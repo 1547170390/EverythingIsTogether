@@ -19,9 +19,14 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         return Optional.ofNullable(getById(id));
     }
 
-    @Override
-    public boolean save(User user) {
-        return super.saveOrUpdate(user);
+    /**
+     * 保存用户（新增或更新）
+     * 使用MyBatis-Plus的saveOrUpdate方法，会自动判断是插入还是更新
+     * @param user 用户实体
+     * @return 是否保存成功
+     */
+    public boolean saveUser(User user) {
+        return saveOrUpdate(user);
     }
 
     public boolean deleteById(Long id) {

@@ -29,9 +29,29 @@ public class UserController {
     }
     
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        userService.save(user);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        // 添加调试日志
+        System.out.println("接收到的用户数据: " + user);
+        System.out.println("用户名: " + user.getName());
+        System.out.println("邮箱: " + user.getEmail());
+        
+        // 验证必要字段
+        if (user.getName() == null || user.getName().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("错误：用户名不能为空。请确保JSON中包含name字段，例如：{\"name\":\"用户名\",\"email\":\"email@example.com\"}");
+        }
+        
+        if (user.getEmail() == null || user.getEmail().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("错误：邮箱不能为空");
+        }
+        
+        try {
+            userService.saveUser(user);
+            System.out.println("用户创建成功: " + user);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            System.err.println("保存用户时出错: " + e.getMessage());
+            return ResponseEntity.status(500).body("保存用户失败: " + e.getMessage());
+        }
     }
     
     @PutMapping("/{id}")
@@ -39,7 +59,7 @@ public class UserController {
         return userService.findById(id)
                 .map(user -> {
                     userDetails.setId(id);
-                    userService.save(userDetails);
+                    userService.saveUser(userDetails);
                     return ResponseEntity.ok(userDetails);
                 })
                 .orElse(ResponseEntity.notFound().build());

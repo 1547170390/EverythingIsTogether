@@ -11,7 +11,7 @@
         resultType: 查询结果要封装成的对象类型，这里是我们的 User 实体类。
      -->
     <select id="findByName" resultType="com.example.entity.User">
-        SELECT * FROM users WHERE name = #{name}
+        SELECT * FROM users WHERE username = #{name}
     </select>
 
 </mapper>
