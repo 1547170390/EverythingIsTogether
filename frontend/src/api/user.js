@@ -23,6 +23,22 @@ api.interceptors.request.use(
 // 响应拦截器
 api.interceptors.response.use(
   (response) => {
+    // 处理统一响应格式
+    const { data } = response
+    if (data && typeof data === 'object' && 'code' in data) {
+      // 如果是统一响应格式
+      if (data.code === 200) {
+        // 成功响应，返回data字段的内容
+        response.data = data.data
+        return response
+      } else {
+        // 错误响应
+        const error = new Error(data.message || '请求失败')
+        error.response = response
+        return Promise.reject(error)
+      }
+    }
+    // 非统一响应格式，直接返回
     return response
   },
   (error) => {
