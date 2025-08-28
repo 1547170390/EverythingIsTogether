@@ -30,7 +30,7 @@
             <ul>
               <li>Spring Boot 3.2.0</li>
               <li>Spring Data JPA</li>
-              <li>H2 数据库</li>
+              <li>MySQL</li>
               <li>Maven 构建工具</li>
               <li>Lombok</li>
             </ul>

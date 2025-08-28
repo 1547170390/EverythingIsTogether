@@ -48,19 +48,19 @@
 
     <el-row :gutter="20" class="tech-row">
       <el-col :span="24">
-        <el-card>
+        <el-card class="box-card project-info" shadow="hover">
           <template #header>
-            <span>技术栈</span>
+            <div class="card-header">
+              <span>项目技术栈</span>
+            </div>
           </template>
-          <el-descriptions :column="2" border>
-            <el-descriptions-item label="后端框架">Spring Boot 3.2.0</el-descriptions-item>
-            <el-descriptions-item label="Java 版本">Java 17</el-descriptions-item>
-            <el-descriptions-item label="数据库">H2 (开发环境)</el-descriptions-item>
-            <el-descriptions-item label="ORM">Spring Data JPA</el-descriptions-item>
-            <el-descriptions-item label="前端框架">Vue 3.3.8</el-descriptions-item>
-            <el-descriptions-item label="UI 组件库">Element Plus</el-descriptions-item>
-            <el-descriptions-item label="构建工具">Vite 5.0</el-descriptions-item>
-            <el-descriptions-item label="状态管理">Pinia</el-descriptions-item>
+          <el-descriptions :column="1" border>
+            <el-descriptions-item label="核心框架">Spring Boot 3</el-descriptions-item>
+            <el-descriptions-item label="前端框架">Vue 3 + Vite</el-descriptions-item>
+            <el-descriptions-item label="UI 库">Element Plus</el-descriptions-item>
+            <el-descriptions-item label="数据库">MySQL</el-descriptions-item>
+            <el-descriptions-item label="持久层">Spring Data JPA + Hibernate</el-descriptions-item>
+            <el-descriptions-item label="版本控制">Git</el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-col>
